@@ -1,5 +1,5 @@
 # Pitch order object definition
-%s
+
 class PitchOrder:
     def __init__(self):
         self.timestamp = None

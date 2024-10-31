@@ -3,14 +3,19 @@ from collections import defaultdict, OrderedDict
 #import PitchOrder
 #from PitchOrder import PitchOrder
 import logging
+import configparser
 
 class volumeCalcHelpers:
     open_orders = {}  # track OPEN ORDERS by ORDER ID
     volumes = defaultdict(int)  # track EXECUTED VOLUME by SYMBOL
 
+    # Declare Config
+    config = configparser.ConfigParser()
+    config.read('config.ini')
 
     # Configure the logger
-    logging.basicConfig(level=logging.DEBUG,
+    log_level = config.get('logging','level')
+    logging.basicConfig(level=log_level,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     # Use the logger
