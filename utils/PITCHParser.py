@@ -1,6 +1,6 @@
 
 import pandas as pd
-import pytest as pt
+
 
 class PITCHMessageParser:
     def __init__(self):
@@ -53,5 +53,5 @@ class PITCHMessageParser:
 
 if __name__ == "__main__":
     parser = PITCHMessageParser()
-    parser.process_file('messages.txt')
+    parser.process_file('../pitch_example_data')
     parser.group_file('parsed_messages.csv')
