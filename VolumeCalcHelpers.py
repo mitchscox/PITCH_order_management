@@ -1,7 +1,6 @@
 import io
 from collections import defaultdict, OrderedDict
-#import PitchOrder
-#from PitchOrder import PitchOrder
+
 import logging
 import configparser
 
@@ -14,8 +13,9 @@ class volumeCalcHelpers:
     config.read('config.ini')
 
     # Configure the logger
-    log_level = config.get('logging','level')
-    logging.basicConfig(level=log_level,
+
+    logging.basicConfig(filename=config.get('logging','pitchlogfile' ),
+                    level=config.get('logging','level'),
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     # Use the logger
@@ -56,9 +56,9 @@ class volumeCalcHelpers:
         order.shares = order_line[23:29].lstrip("0")
         #order.symbol = order_line[:order_line.find(' ')]
         order.symbol = order_line[29:35]
+
         logging.debug("Order Shares: %s" , order.shares)
         logging.debug("Order Symbol: %s", order.symbol)
-
         return order
 
     @staticmethod
@@ -68,7 +68,6 @@ class volumeCalcHelpers:
         order.message_type = order_line[9]
         order.order_id = order_line[10:22]
         order.shares = int(order_line[23:29])
-
         return order
 
     @staticmethod
